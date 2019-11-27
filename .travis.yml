@@ -12,8 +12,10 @@ env:
     - FLAGS=""
 
 before_install:
+  - pecl channel-update pecl.php.net
+  - pecl config-set preferred_state beta
   - echo yes | pecl upgrade apcu
-  - echo "extension=apcu.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - mv ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini{,.disabled} || echo "xdebug not available"
   - composer self-update && composer update $FLAGS
 
 services:
