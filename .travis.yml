@@ -17,6 +17,7 @@ before_install:
   - echo yes | pecl upgrade apcu
   - mv ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini{,.disabled} || echo "xdebug not available"
   - composer self-update && composer update $FLAGS
+  - php -m
 
 services:
   - redis-server
